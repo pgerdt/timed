@@ -9,7 +9,8 @@ VERSION = $$(TIMED_VERSION)
 INCLUDEPATH += ../h
 
 QMAKE_LIBDIR_FLAGS += -L../lib -L../voland
-LIBS += -ltimed -ltimed-voland
+equals(QT_MAJOR_VERSION, 4): LIBS += -ltimed -ltimed-voland
+equals(QT_MAJOR_VERSION, 5): LIBS += -ltimed-qt5 -ltimed-voland-qt5
 
 IODATA_TYPES = queue.type config.type settings.type customization.type tzdata.type
 
@@ -77,8 +78,16 @@ HEADERS += backup.h
 SOURCES += notification.cpp
 HEADERS += notification.h
 
-CONFIG += link_pkgconfig iodata
-PKGCONFIG += contextprovider-1.0 libpcrecpp
+CONFIG += link_pkgconfig
+PKGCONFIG += libpcrecpp
+equals(QT_MAJOR_VERSION, 4) {
+    PKGCONFIG += contextprovider-1.0
+    CONFIG += iodata
+}
+equals(QT_MAJOR_VERSION, 5) {
+    CONFIG += iodata-qt5
+}
+
 
 CONFIG(dsme_dbus_if) {
     PKGCONFIG += dsme_dbus_if
