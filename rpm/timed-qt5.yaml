@@ -21,6 +21,7 @@ PkgConfigBR:
     - libpcrecpp
     - Qt5Core
     - Qt5DBus
+    - Qt5Network
     - dsme_dbus_if
 Configure: none
 Builder: qmake
