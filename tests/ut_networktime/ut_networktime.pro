@@ -2,6 +2,7 @@ TEMPLATE = app
 TARGET = ut_networktime
 
 QT += testlib dbus
+QT -= gui
 
 HEADERS += ut_networktime.h \
            ../../src/server/networktimeinfo.h \
