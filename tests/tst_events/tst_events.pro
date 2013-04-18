@@ -2,6 +2,7 @@ TEMPLATE = app
 TARGET = tst_events
 
 QT += testlib dbus
+QT -= gui
 
 CONFIG += timed
 
