@@ -22,6 +22,7 @@ PkgConfigBR:
     - Qt5Core
     - Qt5DBus
     - Qt5Network
+    - Qt5Test
     - dsme_dbus_if
 Configure: none
 Builder: qmake
