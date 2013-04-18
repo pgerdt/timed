@@ -27,6 +27,7 @@ Requires(postun): systemd
 BuildRequires:  pkgconfig(libpcrecpp)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5DBus)
+BuildRequires:  pkgconfig(Qt5Network)
 BuildRequires:  pkgconfig(dsme_dbus_if)
 BuildRequires:  libiodata-qt5-devel
 BuildRequires:  libxslt
