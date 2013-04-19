@@ -177,5 +177,5 @@ systemctl daemon-reload
 %{_libdir}/pkgconfig/timed-qt5.pc
 %{_libdir}/pkgconfig/timed-voland-qt5.pc
 %{_datadir}/qt5/mkspecs/features/%{name}.prf
-%{_datadir}/qt5/mkspecs/features/%{name}-voland.prf
+%{_datadir}/qt5/mkspecs/features/timed-voland-qt5.prf
 # << files devel
