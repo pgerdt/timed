@@ -4,8 +4,6 @@ TARGET = tst_events
 QT += testlib dbus
 QT -= gui
 
-CONFIG += timed
-
 INCLUDEPATH += ../../src/h
 
 QMAKE_LIBDIR_FLAGS += -L../../src/lib -L../../src/voland
@@ -18,5 +16,6 @@ HEADERS += tst_events.h \
 SOURCES += tst_events.cpp \
            simplevolandadaptor.cpp
 
-target.path = $$(DESTDIR)/opt/tests/timed-tests
+equals(QT_MAJOR_VERSION, 4): target.path = $$(DESTDIR)/opt/tests/timed-tests
+equals(QT_MAJOR_VERSION, 5): target.path = $$(DESTDIR)/opt/tests/timed-qt5-tests
 INSTALLS += target
