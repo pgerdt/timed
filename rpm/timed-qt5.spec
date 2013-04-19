@@ -82,7 +82,7 @@ ln -sf ../../lib/qmacro.h src/h/timed
 #ln -sf ../voland src/h/timed-voland
 # << build pre
 
-%qmake  \
+%qmake5  \
     -recursive "CONFIG += MEEGO dsme_dbus_if"
 
 make %{?jobs:-j%jobs}
