@@ -137,8 +137,8 @@ systemctl daemon-reload
 %{_sysconfdir}/osso-rfs-scripts/timed-restore-original-settings.sh
 %{_bindir}/%{name}
 %{_bindir}/timed-aegis-session-helper
-%{_libdir}/libtimed.so.*
-%{_libdir}/libtimed-voland.so.*
+%{_libdir}/lib%{name}.so.*
+%{_libdir}/libtimed-voland-qt5.so.*
 %{_datadir}/backup-framework/applications/timedbackup.conf
 %{_datadir}/backup-framework/scripts/timed-backup-script.sh
 %{_datadir}/backup-framework/scripts/timed-restore-script.sh
