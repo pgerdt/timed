@@ -15,7 +15,8 @@ INCLUDEPATH += ../h
 target.path = /usr/lib
 
 devheaders.files = reminder interface ta_interface reminder.h interface.h
-devheaders.path  = /usr/include/timed-voland
+equals(QT_MAJOR_VERSION, 4): devheaders.path  = /usr/include/timed-voland
+equals(QT_MAJOR_VERSION, 5): devheaders.path  = /usr/include/timed-voland-qt5
 
 pc.path = /usr/lib/pkgconfig
 equals(QT_MAJOR_VERSION, 4) {
