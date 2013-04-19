@@ -101,7 +101,7 @@ rm -rf %{buildroot}
 #install -m 644 -D src/doc/libtimed.3 %{buildroot}/%{_mandir}/man3/libtimed.3
 #install -m 644 src/doc/libtimed-voland.3 %{buildroot}/%{_mandir}/man3/libtimed-voland.3
 
-install -d %{buildroot}/%{_localstatedir}/cache/%{name}/aegis/
+install -d %{buildroot}/%{_localstatedir}/cache/%{name}
 
 # The file %{buildroot}/lib/systemd/system/%{name}.service is installed by make install
 install -d %{buildroot}/lib/systemd/system/multi-user.target.wants/
@@ -146,7 +146,7 @@ systemctl daemon-reload
 # %{_mandir}/man3/libtimed.3.gz
 # %{_mandir}/man3/libtimed-voland.3.gz
 # %{_mandir}/man8/timed.8.gz
-%{_localstatedir}/cache/timed/
+%{_localstatedir}/cache/%{name}
 /lib/systemd/system/%{name}.service
 /lib/systemd/system/multi-user.target.wants/%{name}.service
 # << files
@@ -163,7 +163,7 @@ systemctl daemon-reload
 %defattr(-,root,root,-)
 # >> files tools
 %doc COPYING
-%{_bindir}/timedclient
+%{_bindir}/timedclient-qt5
 # << files tools
 
 %files devel
@@ -171,11 +171,11 @@ systemctl daemon-reload
 # >> files devel
 %doc COPYING
 %{_includedir}/%{name}/*
-%{_includedir}/timed-voland/*
-%{_libdir}/libtimed.so
-%{_libdir}/libtimed-voland.so
-%{_libdir}/pkgconfig/timed.pc
-%{_libdir}/pkgconfig/timed-voland.pc
-%{_datadir}/qt4/mkspecs/features/timed.prf
-%{_datadir}/qt4/mkspecs/features/timed-voland.prf
+%{_includedir}/timed-voland-qt5/*
+%{_libdir}/lib{%name}.so
+%{_libdir}/libtimed-voland-qt5.so
+%{_libdir}/pkgconfig/timed-qt5.pc
+%{_libdir}/pkgconfig/timed-voland-qt5.pc
+%{_datadir}/qt5/mkspecs/features/%{name}.prf
+%{_datadir}/qt5/mkspecs/features/%{name}-voland.prf
 # << files devel
