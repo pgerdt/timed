@@ -172,7 +172,7 @@ systemctl daemon-reload
 %doc COPYING
 %{_includedir}/%{name}/*
 %{_includedir}/timed-voland-qt5/*
-%{_libdir}/lib{%name}.so
+%{_libdir}/lib%{name}.so
 %{_libdir}/libtimed-voland-qt5.so
 %{_libdir}/pkgconfig/timed-qt5.pc
 %{_libdir}/pkgconfig/timed-voland-qt5.pc
