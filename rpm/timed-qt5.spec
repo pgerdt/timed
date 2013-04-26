@@ -75,7 +75,7 @@ Header files and shared lib symlink for %{name}.
 # >> build pre
 export TIMED_VERSION=%{version}
 mkdir -p src/h/timed
-ln -sf ../../lib/qmacro.h src/h/timed
+ln -sf ../../lib/qmacro.h src/h/timed-qt5
 # << build pre
 
 %qmake5  \
