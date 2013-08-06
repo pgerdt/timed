@@ -84,7 +84,15 @@ ln -s ../%{name}.service %{buildroot}%{_libdir}/systemd/user/pre-user-session.ta
 chmod 755 %{buildroot}%{_datadir}/backup-framework/scripts/timed-restore-script.sh
 chmod 755 %{buildroot}%{_oneshotdir}/setcaps-%{name}.sh
 
+# Timed changes time zone by linking /var/lib/timed/localtime to zones in /usr/share/zoneinfo.
+# Initial links are done in the post section
+install -d %{buildroot}/var/lib/timed
+
 %post
+# Make /etc/localtime a link to /var/lib/timed/localtime to make system time zone follow timed.
+ln -sf /usr/share/zoneinfo/Europe/Helsinki /var/lib/timed/localtime
+ln -sf /var/lib/timed/localtime /etc/localtime
+
 /sbin/ldconfig
 add-oneshot --now setcaps-%{name}.sh
 if [ "$1" -ge 1 ]; then
@@ -126,6 +134,7 @@ fi
 %{_libdir}/systemd/user/%{name}.service
 %{_libdir}/systemd/user/pre-user-session.target.wants/%{name}.service
 %{_oneshotdir}/setcaps-%{name}.sh
+%dir %attr(0744,nemo,nemo) /var/lib/timed
 
 %files tests
 %defattr(-,root,root,-)
