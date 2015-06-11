@@ -43,7 +43,9 @@ NtpController::NtpController(bool enable, QObject *parent) :
     connect(m_connmanWatcher, SIGNAL(serviceRegistered(QString)),
             this, SLOT(serviceRegistered()));
 
-    enableNtpTimeAdjustment(m_enable);
+    QDBusInterface connmanInterface(CONNMAN_SERVICE, "/" ,CONNMAN_INTERFACE, QDBusConnection::systemBus());
+    if (connmanInterface.isValid())
+        enableNtpTimeAdjustment(m_enable);
 }
 
 void NtpController::enableNtpTimeAdjustment(bool enable)
