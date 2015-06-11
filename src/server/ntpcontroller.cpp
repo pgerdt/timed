@@ -25,6 +25,7 @@
 #include <QDBusReply>
 #include <QDBusVariant>
 #include <QDBusServiceWatcher>
+#include <QtDBus/QDBusPendingCallWatcher>
 
 #include "../common/log.h"
 
@@ -68,7 +69,24 @@ void NtpController::setConnmanProperty(QString key, QString value)
     QList<QVariant> arguments;
     arguments << key << QVariant::fromValue(QDBusVariant(value));
     request.setArguments(arguments);
-    QDBusReply<void> reply = QDBusConnection::systemBus().call(request);
+
+    QDBusPendingReply<void> reply = QDBusConnection::systemBus().asyncCall(request);
+    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
+
+    QObject::connect(watcher,SIGNAL(finished(QDBusPendingCallWatcher*)),
+                     this, SLOT(propertiesReply(QDBusPendingCallWatcher*)));
+}
+
+void NtpController::serviceRegistered()
+{
+    enableNtpTimeAdjustment(m_enable);
+}
+
+void NtpController::propertiesReply(QDBusPendingCallWatcher *call)
+{
+    QDBusPendingReply<void> reply = *call;
+    call->deleteLater();
+
     if (reply.error().isValid()) {
         log_warning("Failed to call %s.%s: %s",
                     QString(CONNMAN_INTERFACE).toStdString().c_str(),
@@ -80,9 +98,4 @@ void NtpController::setConnmanProperty(QString key, QString value)
                   key.toStdString().c_str(),
                   value.toStdString().c_str());
     }
-}
-
-void NtpController::serviceRegistered()
-{
-    enableNtpTimeAdjustment(m_enable);
 }
